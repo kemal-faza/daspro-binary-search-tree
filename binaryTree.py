@@ -82,7 +82,7 @@ def IsExistRight(P):
 
 
 # NbElmt: PohonBiner --> integer
-# NbElmt(P) mengembalikan jumlah elemen dalam P
+# NbElmt(P) mengembalikan jumlah elemen dalam P untuk PohonBiner basis-0
 def NbElmt(P):
     if IsTreeEmpty(P):
         return 0
@@ -91,7 +91,7 @@ def NbElmt(P):
 
 
 # NbElmt1: PohonBiner --> integer
-# NbElmt1(P) mengembalikan jumlah elemen dalam P dengan rekursif
+# NbElmt1(P) mengembalikan jumlah elemen dalam P untuk PohonBiner basis-1
 def NbElmt1(P):
     if isOneElmt(P):
         return 1
@@ -104,69 +104,7 @@ def NbElmt1(P):
 
 
 # NbDaun: PohonBiner --> integer
-# NbDaun(P) mengembalikan jumlah daun dalam P
-
-# NbDaun1: PohonBiner --> integer
-# NbDaun1(P) mengembalikan jumlah daun dalam P dengan rekursif
-
-# IsMember: PohonBiner, elemen --> boolean
-# IsMember(P, X) mengembalikan True jika X adalah elemen dalam P, False otherwise
-
-# IsSkewLeft: PohonBiner --> boolean
-# IsSkewLeft(P) mengembalikan True jika P adalah pohon skew kiri, False otherwise
-
-# IsSkewRight: PohonBiner --> boolean
-# IsSkewRight(P) mengembalikan True jika P adalah pohon skew kanan, False otherwise
-
-# max2: integer, integer --> integer
-# max2(a, b) mengembalikan nilai maksimum antara a dan b
-
-# Level: PohonBiner, elemen, integer --> integer
-# Level(P, X, lvl) mengembalikan level dari elemen X dalam P
-
-# LevelOfX: PohonBiner, elemen --> integer
-# LevelOfX(P, X) mengembalikan level dari elemen X dalam P
-
-# AddDaunTerkiri: PohonBiner, elemen --> PohonBiner
-# AddDaunTerkiri(P, X) menambahkan elemen X sebagai daun terakhir dalam P
-
-# AddDaun: PohonBiner, elemen, elemen, boolean --> PohonBiner
-# AddDaun(P, X, Y, Kiri) menambahkan elemen Y sebagai anak kiri atau kanan dari elemen X dalam P
-
-# DelDaunTerkiri: PohonBiner --> PohonBiner
-# DelDaunTerkiri(P) menghapus daun terakhir dalam P
-
-# DelDaun: PohonBiner, elemen --> PohonBiner
-# DelDaun(P, X) menghapus elemen X dalam P
-
-# MakeListDaun: PohonBiner --> list
-# MakeListDaun(P) mengembalikan list daun dalam P
-
-# MakeListPreOrder: PohonBiner --> list
-# MakeListPreOrder(P) mengembalikan list elemen dalam P dengan traversal pre-order
-
-# MakeListPostOrder: PohonBiner --> list
-# MakeListPostOrder(P) mengembalikan list elemen dalam P dengan traversal post-order
-
-# MakeListInOrder: PohonBiner --> list
-# MakeListInOrder(P) mengembalikan list elemen dalam P dengan traversal in-order
-
-# MakeListLevel: PohonBiner, integer --> list
-# MakeListLevel(P, N) mengembalikan list elemen dalam P pada level N
-
-# Left: PohonBiner --> PohonBiner
-# Left(P) mengembalikan subpohon kiri dari P
-
-# Right: PohonBiner --> PohonBiner
-# Right(P) mengembalikan subpohon kanan dari P
-
-# Akar: PohonBiner --> elemen
-# Akar(P) mengembalikan elemen akar dari P
-
-# MakePB: elemen, PohonB ```python
-# MakePB(X, L, R) mengembalikan pohon biner baru dengan elemen X sebagai akar, L sebagai subpohon kiri, dan R sebagai subpohon kanan
-
-
+# NbDaun(P) mengembalikan jumlah daun dalam P untuk PohonBiner basis-0
 def NbDaun(P):
     if IsTreeEmpty(P):
         return 0
@@ -174,6 +112,8 @@ def NbDaun(P):
         return NbDaun1(P)
 
 
+# NbDaun1: PohonBiner --> integer
+# NbDaun1(P) mengembalikan jumlah daun dalam P untuk PohonBiner basis-1
 def NbDaun1(P):
     if isOneElmt(P):
         return 1
@@ -185,6 +125,8 @@ def NbDaun1(P):
         return NbDaun1(Right(P))
 
 
+# IsMember: PohonBiner, elemen --> boolean
+# IsMember(P, X) mengembalikan True jika X adalah elemen dalam P
 def IsMember(P, X):
     if isOneElmt(P):
         return Akar(P) == X
@@ -198,6 +140,8 @@ def IsMember(P, X):
         return IsMember(Right(P), X)
 
 
+# IsSkewLeft: PohonBiner --> boolean
+# IsSkewLeft(P) mengembalikan True jika P adalah pohon condong kiri
 def IsSkewLeft(P):
     if isOneElmt(P):
         return True
@@ -205,6 +149,8 @@ def IsSkewLeft(P):
         return IsUnerLeft(P)
 
 
+# IsSkewRight: PohonBiner --> boolean
+# IsSkewRight(P) mengembalikan True jika P adalah pohon condong kanan
 def IsSkewRight(P):
     if isOneElmt(P):
         return True
@@ -212,10 +158,14 @@ def IsSkewRight(P):
         return IsUnerRight(P)
 
 
+# max2: integer, integer --> integer
+# max2(a, b) mengembalikan nilai maksimum antara a dan b
 def max2(a, b):
     return a if a > b else b
 
 
+# Level: PohonBiner, elemen, integer --> integer
+# Level(P, X, lvl) adalah fungsi pembantu untuk mencari level dari elemen X dalam P
 def Level(P, X, lvl):
     if IsTreeEmpty(P):
         return 0
@@ -225,6 +175,8 @@ def Level(P, X, lvl):
         return max2(Level(Left(P), X, lvl + 1), Level(Right(P), X, lvl + 1))
 
 
+# LevelOfX: PohonBiner, elemen --> integer
+# LevelOfX(P, X) mengembalikan level dari elemen X dalam P
 def LevelOfX(P, X):
     if IsTreeEmpty(P):
         return 0
@@ -234,6 +186,8 @@ def LevelOfX(P, X):
         return Level(P, X, 0)
 
 
+# AddDaunTerkiri: PohonBiner, elemen --> PohonBiner
+# AddDaunTerkiri(P, X) menambahkan elemen X sebagai daun terkiri dalam P
 def AddDaunTerkiri(P, X):
     if IsTreeEmpty(P):
         return MakePB(X, [], [])
@@ -243,6 +197,8 @@ def AddDaunTerkiri(P, X):
         return MakePB(Akar(P), AddDaunTerkiri(Left(P), X), Right(P))
 
 
+# AddDaun: PohonBiner, elemen, elemen, boolean --> PohonBiner
+# AddDaun(P, X, Y, Kiri) menambahkan elemen Y sebagai anak kiri atau kanan dari elemen X dalam P
 def AddDaun(P, X, Y, Kiri):
     if IsTreeEmpty(P):
         return P
@@ -257,6 +213,8 @@ def AddDaun(P, X, Y, Kiri):
         )
 
 
+# DelDaunTerkiri: PohonBiner --> PohonBiner
+# DelDaunTerkiri(P) menghapus daun terkiri dalam P
 def DelDaunTerkiri(P):
     if isOneElmt(P):
         return []
@@ -266,6 +224,8 @@ def DelDaunTerkiri(P):
         return MakePB(Akar(P), DelDaunTerkiri(Left(P)), Right(P))
 
 
+# DelDaun: PohonBiner, elemen --> PohonBiner
+# DelDaun(P, X) menghapus elemen X dalam P
 def DelDaun(P, X):
     if IsTreeEmpty(P):
         return P
@@ -275,6 +235,8 @@ def DelDaun(P, X):
         return MakePB(Akar(P), DelDaun(Left(P), X), DelDaun(Right(P), X))
 
 
+# MakeListDaun: PohonBiner --> list
+# MakeListDaun(P) mengembalikan list daun dalam P
 def MakeListDaun(P):
     if IsTreeEmpty(P):
         return []
@@ -284,6 +246,8 @@ def MakeListDaun(P):
         return MakeListDaun(Left(P)) + MakeListDaun(Right(P))
 
 
+# MakeListPreOrder: PohonBiner --> list
+# MakeListPreOrder(P) mengembalikan list elemen dalam P dengan traversal pre-order
 def MakeListPreOrder(P):
     if IsTreeEmpty(P):
         return []
@@ -291,6 +255,8 @@ def MakeListPreOrder(P):
         return [Akar(P)] + MakeListPreOrder(Left(P)) + MakeListPreOrder(Right(P))
 
 
+# MakeListPostOrder: PohonBiner --> list
+# MakeListPostOrder(P) mengembalikan list elemen dalam P dengan traversal post-order
 def MakeListPostOrder(P):
     if IsTreeEmpty(P):
         return []
@@ -298,6 +264,8 @@ def MakeListPostOrder(P):
         return MakeListPostOrder(Left(P)) + MakeListPostOrder(Right(P)) + [Akar(P)]
 
 
+# MakeListInOrder: PohonBiner --> list
+# MakeListInOrder(P) mengembalikan list elemen dalam P dengan traversal in-order
 def MakeListInOrder(P):
     if IsTreeEmpty(P):
         return []
@@ -305,6 +273,8 @@ def MakeListInOrder(P):
         return MakeListInOrder(Left(P)) + [Akar(P)] + MakeListInOrder(Right(P))
 
 
+# MakeListLevel: PohonBiner, integer --> list
+# MakeListLevel(P, N) mengembalikan list elemen dalam P pada level N
 def MakeListLevel(P, N):
     if IsTreeEmpty(P):
         return []
