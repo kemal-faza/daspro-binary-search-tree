@@ -21,6 +21,8 @@ def IsTreeEmpty(P):
     return P == []
 
 
+# BSearchX : BinSearchTree, elemen --> boolean
+# BSearchX(P, X) mengirimkan true jika ada node dari BinSearchTree P bernilai X, mengirimkan false jika tidak ada
 def BSearchX(P, X):
     if IsTreeEmpty(P):
         return False
@@ -38,6 +40,8 @@ print(
 )
 
 
+# AddX : BinSearchTree, elemen --> PohonBiner
+# Add(P, X) menghasilkan sebuah BinSearchTree P dengan tambahan simpul X. Belum ada simpul P yang bernilai X
 def AddX(P, X):
     if IsTreeEmpty(P):
         return MakeBST([], X, [])
@@ -53,6 +57,8 @@ def AddX(P, X):
 print(f"AddX(P, X) => {AddX(MakeBST(MakeBST([], 2, []), 5, MakeBST([], 6, [])), 1)}")
 
 
+# MakeBinSearchTree : list of elemen --> PohonBiner
+# MakeBinSearchTree(L) menghasilkan sebuah BinSearchTree P yang elemennya berasal dari elemen list L yang dijamin unik
 def MakeBinSearchTree(L):
     if IsTreeEmpty(L):
         return []
@@ -63,6 +69,8 @@ def MakeBinSearchTree(L):
 print(f"MakeBinSearchTree(L) => {MakeBinSearchTree([5, 3, 8, 1, 4])}")
 
 
+# DelBTree : BinSearchTree tidak kosong, elemen --> PohonBiner
+# DelBTree(P, X) menghasilkansebuah BinSearchTree P tanpa node yang bernilai X. X pasti ada sebagai salah satu node BinSearchTree. Menghasilkan BinSearchTree yang "kosong" jika P hanya terdiri dari X
 def DelBTree(P, X):
     if IsTreeEmpty(P):
         return P
